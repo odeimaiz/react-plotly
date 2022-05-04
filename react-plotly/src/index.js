@@ -13,7 +13,7 @@ function reGraph() {
   };
   const n = 100;
   for (let i = initTime; i < n+initTime; i++) {
-    const t = i / 4;
+    const t = i / 8;
     const date = new Date(null);
     date.setSeconds(i);
     // formatted as %H:%M:%S time series
@@ -23,9 +23,8 @@ function reGraph() {
     // A sine wave:
     data.y[i] = Math.sin(t);
   }
-  initTime += 5;
-  console.log(data);
+  initTime += 1;
   root.render(<Graph dataFromParent={data} />);
 }
 
-setInterval(reGraph, 1000);
+setInterval(reGraph, 500);

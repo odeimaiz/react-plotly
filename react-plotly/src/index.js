@@ -24,7 +24,8 @@ function reGraph() {
     data.y[i] = Math.sin(t);
   }
   initTime += 1;
-  root.render(<Graph dataFromParent={data} />);
+  const title = "Amplitude";
+  root.render(<Graph graphData={data} graphTitle={title} />);
 }
 
 setInterval(reGraph, 500);

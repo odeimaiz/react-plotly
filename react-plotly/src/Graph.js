@@ -2,8 +2,27 @@ import React from 'react';
 import Plot from 'react-plotly.js';
 
 class Graph extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: {
+        x: [],
+        y: [],
+      },
+      title: "Title"
+    };
+  }
+
+  componentWillReceiveProps(props) {
+    this.setState({
+      data: props.graphData,
+      title: props.graphTitle
+    });
+  }
+
   render() {
-    const data = this.props.dataFromParent;
+    const data = this.state.data;
+    const title = this.state.title;
     return (
       <Plot
         data={
@@ -19,7 +38,7 @@ class Graph extends React.Component {
         layout={{
           width: 560,
           height: 420,
-          title: "Amplitude",
+          title: title,
           xaxis: {
             tickformat: "%H:%M:%S"
           }

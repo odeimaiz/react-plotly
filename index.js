@@ -9,9 +9,31 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "react-plotly", "public", "index.html"));
 });
 
+let initTime = 0;
 app.get('/getData', (req, res) => {
+  const respData = {
+    title: "Amplitude",
+    data: {
+      x: [],
+      y: []
+    }
+  };
+  const nSamples = 1000;
+  for (let i = initTime; i < nSamples+initTime; i++) {
+    const t = i / 42;
+    const date = new Date(null);
+    date.setSeconds(i);
+    // formatted as %H:%M:%S time series
+    const result = date.toISOString().substring(11, 19);
+    respData.data.x[i] = result;
+
+    // A sine wave:
+    respData.data.y[i] = Math.sin(t);
+  }
+  initTime += 1;
+
   res.send({
-    newData: 'YOUR EXPRESS BACKEND IS CONNECTED TO REACT'
+    newData: respData
   });
 });
 

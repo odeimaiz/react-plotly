@@ -11,9 +11,16 @@ app.get("/", (req, res) => {
 
 let initTime = 0;
 app.get('/getData', (req, res) => {
-  const respData = {
-    title: "Amplitude",
-    data: {
+  console.log("getData");
+  const channel = req.query.channel;
+  let variables = req.query.variables;
+  if (variables && variables.length) {
+    variables = variables[0];
+  }
+
+  const data = {
+    title: req.query.variables.charAt(0).toUpperCase() + req.query.variables.slice(1),
+    graphData: {
       x: [],
       y: []
     }
@@ -25,17 +32,17 @@ app.get('/getData', (req, res) => {
     const date = new Date(null);
     date.setSeconds(initTime+i);
     const result = date.toISOString().substring(11, 19);
-    respData.data.x[idx] = result;
+    data.graphData.x[idx] = result;
 
     // y: sine wave
     const t = i / 60;
-    respData.data.y[idx] = Math.sin(t);
+    data.graphData.y[idx] = Math.sin(t);
     idx++;
   }
   initTime += 30;
 
   res.send({
-    newData: respData
+    data: data
   });
 });
 

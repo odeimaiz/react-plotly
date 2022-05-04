@@ -5,11 +5,17 @@ import Graph from './Graph';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-
-const callBackendAPI = async () => {
-  const response = await fetch('/getData');
+const callBackendAPI = async (requestOptions = {}) => {
+  let queryParams = "";
+  const requestKeys = Object.keys(requestOptions);
+  if (requestKeys.length) {
+    queryParams += "?"
+    requestKeys.forEach(key => {
+      queryParams += encodeURIComponent(key) + "=" + encodeURIComponent(requestOptions[key]) + "&";
+    });
+  };
+  const response = await fetch("/getData" + queryParams);
   const body = await response.json();
-
   if (response.status !== 200) {
     throw Error(body.message) 
   }
@@ -17,10 +23,14 @@ const callBackendAPI = async () => {
 };
 
 function reGraph() {
-  callBackendAPI()
+  const requestOptions = {
+    "channel": 1,
+    "variables": ["amplitude"]
+  };
+  callBackendAPI(requestOptions)
     .then(res => {
-      const respData = res["newData"];
-      root.render(<Graph graphData={respData.data} graphTitle={respData.title} />);
+      const respData = res["data"];
+      root.render(<Graph graphData={respData.graphData} graphTitle={respData.title} />);
     })
     .catch(err => console.log(err));
 }

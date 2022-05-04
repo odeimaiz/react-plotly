@@ -1,7 +1,7 @@
 import React from 'react';
 import Plot from 'react-plotly.js';
 
-class App extends React.Component {
+class Graph extends React.Component {
   render() {
     return (
       <Plot
@@ -15,10 +15,10 @@ class App extends React.Component {
           },
           {type: 'bar', x: [1, 2, 3], y: [2, 5, 3]},
         ]}
-        layout={{width: 320, height: 240, title: 'A Fancy Plot'}}
+        layout={{width: 640, height: 480, title: 'A Fancy Plot'}}
       />
     );
   }
 }
 
-export default App;
+export default Graph;

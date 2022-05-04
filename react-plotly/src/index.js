@@ -19,13 +19,7 @@ const callBackendAPI = async () => {
 function reGraph() {
   callBackendAPI()
     .then(res => {
-      const respData = res.newData;
-      const removeIndices = respData.data.x.findIndex(v => v !== null);
-      if (removeIndices > -1) {
-        console.error("removing empty indices: ", removeIndices);
-        respData.data.x.splice(0, removeIndices);
-        respData.data.y.splice(0, removeIndices);
-      }
+      const respData = res["newData"];
       root.render(<Graph graphData={respData.data} graphTitle={respData.title} />);
     })
     .catch(err => console.log(err));

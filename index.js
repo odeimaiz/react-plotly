@@ -19,16 +19,18 @@ app.get('/getData', (req, res) => {
     }
   };
   const nSamples = 1000;
+  let idx = 0;
   for (let i = initTime; i < nSamples+initTime; i++) {
     const t = i / 42;
     const date = new Date(null);
     date.setSeconds(i);
     // formatted as %H:%M:%S time series
     const result = date.toISOString().substring(11, 19);
-    respData.data.x[i] = result;
+    respData.data.x[idx] = result;
 
     // A sine wave:
-    respData.data.y[i] = Math.sin(t);
+    respData.data.y[idx] = Math.sin(t);
+    idx++;
   }
   initTime += 1;
 

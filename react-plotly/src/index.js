@@ -11,9 +11,9 @@ function reGraph() {
     x: [],
     y: []
   };
-  const n = 100;
-  for (let i = initTime; i < n+initTime; i++) {
-    const t = i / 8;
+  const nSamples = 1000;
+  for (let i = initTime; i < nSamples+initTime; i++) {
+    const t = i / 42;
     const date = new Date(null);
     date.setSeconds(i);
     // formatted as %H:%M:%S time series

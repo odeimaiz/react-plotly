@@ -19,7 +19,7 @@ class Graph extends React.Component {
         layout={{
           width: 560,
           height: 420,
-          title: "A Sine",
+          title: "Amplitude",
           xaxis: {
             tickformat: "%H:%M:%S"
           }

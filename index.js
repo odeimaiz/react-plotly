@@ -11,7 +11,6 @@ app.get("/", (req, res) => {
 
 let initTime = 0;
 app.get('/getData', (req, res) => {
-  console.log("getData");
   const channel = req.query.channel;
   let variables = req.query.variables;
   if (variables && variables.length) {
@@ -19,7 +18,7 @@ app.get('/getData', (req, res) => {
   }
 
   const data = {
-    title: req.query.variables.charAt(0).toUpperCase() + req.query.variables.slice(1),
+    title: "Ch-" + channel + ": " + req.query.variables.charAt(0).toUpperCase() + req.query.variables.slice(1),
     graphData: {
       x: [],
       y: []

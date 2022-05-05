@@ -1,4 +1,5 @@
 import React from 'react';
+import TimeFrameSelector from './TimeFrameSelector';
 import Graph from './Graph';
 
 
@@ -23,6 +24,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      timeFrame: "10",
       graphData: {},
       graphTitle: ""
     };
@@ -44,6 +46,12 @@ class App extends React.Component {
       .catch(err => console.log(err));
   }
 
+  onTimeFrameChanged = (event) => {
+    this.setState(state => ({
+      timeFrame: event.target.value
+    }));
+  }
+
   componentDidMount() {
     setInterval(this.reGraph, 500);
   }
@@ -51,7 +59,14 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Graph graphData={this.state.graphData} graphTitle={this.state.graphTitle} />
+        <TimeFrameSelector
+          selectedTimeFrame={this.state.timeFrame}
+          onTimeFrameChanged={this.onTimeFrameChanged}
+        />
+        <Graph
+          graphData={this.state.graphData}
+          graphTitle={this.state.graphTitle}
+        />
       </div>
     )
   }

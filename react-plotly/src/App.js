@@ -1,6 +1,7 @@
 import React from 'react';
 import TimeFrameSelector from './TimeFrameSelector';
 import Graph from './Graph';
+import GraphsSelector from './GraphsSelector';
 
 
 const fetchMoreData = async (requestOptions = {}) => {
@@ -24,6 +25,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      selectedGraphs: ["1a"],
       timeFrame: "10",
       graphData: {},
       graphTitle: ""
@@ -46,6 +48,18 @@ class App extends React.Component {
       .catch(err => console.log(err));
   }
 
+  onSelectedGraphsChanged = (event) => {
+    const v = event.target.value;
+    if (this.state.selectedGraphs.includes(v)) {
+      this.state.selectedGraphs.splice(this.state.selectedGraphs.indexOf(v), 1);
+    } else {
+      this.state.selectedGraphs.push(v);
+    }
+    this.setState(state => ({
+      selectedGraphs: this.state.selectedGraphs
+    }));
+  }
+
   onTimeFrameChanged = (event) => {
     this.setState(state => ({
       timeFrame: event.target.value
@@ -59,6 +73,10 @@ class App extends React.Component {
   render() {
     return (
       <div>
+        <GraphsSelector
+          selectedGraphs={this.state.selectedGraphs}
+          onSelectedGraphsChanged={this.onSelectedGraphsChanged}
+        />
         <TimeFrameSelector
           selectedTimeFrame={this.state.timeFrame}
           onTimeFrameChanged={this.onTimeFrameChanged}

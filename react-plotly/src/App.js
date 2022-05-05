@@ -49,11 +49,11 @@ class App extends React.Component {
   }
 
   onSelectedGraphsChanged = (event) => {
-    const v = event.target.value;
-    if (this.state.selectedGraphs.includes(v)) {
-      this.state.selectedGraphs.splice(this.state.selectedGraphs.indexOf(v), 1);
+    const changedGraph = event.target.value;
+    if (this.state.selectedGraphs.includes(changedGraph)) {
+      this.state.selectedGraphs.splice(this.state.selectedGraphs.indexOf(changedGraph), 1);
     } else {
-      this.state.selectedGraphs.push(v);
+      this.state.selectedGraphs.push(changedGraph);
     }
     this.setState(state => ({
       selectedGraphs: this.state.selectedGraphs

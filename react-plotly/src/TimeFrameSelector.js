@@ -10,10 +10,10 @@ class TimeFrameSelector extends React.Component {
   }
 
   timeFrames = [
-    { label: "1sec", value: "1" },
-    { label: "10sec", value: "10" },
-    { label: "60sec", value: "60" },
-    { label: "5min", value: "300" },
+    { label: "1s", value: "1" },
+    { label: "10s", value: "10" },
+    { label: "1m", value: "60" },
+    { label: "5m", value: "300" },
   ];
 
   componentWillReceiveProps(props) {

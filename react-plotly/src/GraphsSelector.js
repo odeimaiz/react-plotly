@@ -21,9 +21,9 @@ class GraphsSelector extends React.Component {
   ];
 
   quantities = [
-    { label: "Amplitude", value: "a" },
-    { label: "Current", value: "i" },
-    { label: "Impedance", value: "z" },
+    { label: "Amplitude", value: "amplitude" },
+    { label: "Current", value: "current" },
+    { label: "Impedance", value: "impedance" },
   ];
 
   componentWillReceiveProps(props) {

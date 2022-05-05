@@ -36,8 +36,8 @@ class Graph extends React.Component {
           }]
         }
         layout={{
-          width: 560,
-          height: 420,
+          width: 480,
+          height: 360,
           title: title,
           xaxis: {
             tickformat: "%H:%M:%S"
